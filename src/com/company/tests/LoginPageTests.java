@@ -8,27 +8,19 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class TrelloTests {
-    WebDriver driver;
+public class LoginPageTests extends TestBase{
 
     @BeforeMethod
     public void initTests() throws InterruptedException {
-        driver = new ChromeDriver();
-        driver.get("https://trello.com/");
-        Thread.sleep(5000);
-    }
-
-    @Test
-    public void trelloApplStart(){
-        System.out.println("Title: " + driver.getTitle());
-    }
-
-    @Test
-    public void loginNegativeNoEmail() throws InterruptedException {
         // --- Define login button and click ------
         WebElement loginIcon = driver.findElement(By.xpath("//a[@href='/login']"));
         loginIcon.click();
         Thread.sleep(5000);
+    }
+
+    @Test
+    public void loginNegativeNoEmail() throws InterruptedException {
+
         // --- Fill in email field ------
         WebElement emailField = driver.findElement(By.id("user"));
         emailField.click();
@@ -48,10 +40,7 @@ public class TrelloTests {
     }
     @Test
     public void loginNegativeLoginNotEmail() throws InterruptedException {
-        // --- Define login button and click ------
-        WebElement loginIcon = driver.findElement(By.xpath("//a[@href='/login']"));
-        loginIcon.click();
-        Thread.sleep(5000);
+
         // --- Fill in email field ------
         WebElement emailField = driver.findElement(By.id("user"));
         emailField.click();
@@ -72,14 +61,6 @@ public class TrelloTests {
 
     @Test
     public void loginNegativePasswordIncorrect() throws InterruptedException {
-        // --- Define login button and click ------
-        // ------ old locator, not actual now -----
-        // WebElement loginIcon = driver.findElement(By.cssSelector(".btn-link"));
-        // ----- new locators, actual now------
-        //WebElement loginIcon = driver.findElement(By.xpath("//span[contains(text(),'Log in')]"));
-        WebElement loginIcon = driver.findElement(By.xpath("//a[@href='/login']"));
-        loginIcon.click();
-        Thread.sleep(5000);
         //----- Enter email -----
         WebElement emailField = driver.findElement(By.id("user"));
         emailField.click();
@@ -105,10 +86,6 @@ public class TrelloTests {
     }
     @Test
     public void loginPositive() throws InterruptedException {
-        // --- Define login button and click ------
-        WebElement loginIcon = driver.findElement(By.xpath("//a[@href='/login']"));
-        loginIcon.click();
-        Thread.sleep(5000);
         //----- Enter email -----
         WebElement emailField = driver.findElement(By.id("user"));
         emailField.click();
@@ -133,8 +110,4 @@ public class TrelloTests {
 
     }
 
-    @AfterMethod
-    public void tearDown(){
-        driver.quit();
-    }
 }
