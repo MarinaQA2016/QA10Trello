@@ -12,7 +12,7 @@ public class TestBase {
     public void startUp() throws InterruptedException {
         driver = new ChromeDriver();
         driver.get("https://trello.com/");
-        Thread.sleep(5000);
+        //Thread.sleep(5000);
     }
     @AfterMethod
     public void tearDown(){

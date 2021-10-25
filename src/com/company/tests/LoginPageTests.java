@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -36,7 +37,8 @@ public class LoginPageTests extends TestBase{
         Thread.sleep(3000);
         // ----Print error message ----------
         WebElement errorMessage = driver.findElement(By.cssSelector("#error>p"));
-        System.out.println("Error message text: " + errorMessage.getText());
+        Assert.assertEquals("Missing email", errorMessage.getText(),
+                "The final error-message is not 'Missing email'");
     }
     @Test
     public void loginNegativeLoginNotEmail() throws InterruptedException {
@@ -106,8 +108,8 @@ public class LoginPageTests extends TestBase{
         Thread.sleep(20000);
         // ---- Print name of the 'Boards' button ----
         WebElement boardsButton = driver.findElement(By.xpath("//span[contains(text(),'Boards')]"));
-        System.out.println("Name of the 'Boards' button is " + boardsButton.getText());
-
+        Assert.assertTrue(boardsButton.getText().equals("Boards"),
+                "The text of the checked button is not 'Boards'");
     }
 
 }
