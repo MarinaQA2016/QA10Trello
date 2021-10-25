@@ -64,4 +64,45 @@ public class CurrentBoardPageTests extends TestBase{
         Thread.sleep(2000);
 
     }
+    @Test
+    public void addNewCard() throws InterruptedException {
+        WebElement addListButton = driver.findElement(By.cssSelector(".placeholder"));
+        //-----Verification of lists quantity by name of addListButton -------
+        //if (addListButton.getText().equals("Add a list")) {
+        //------Verification by list elements quantity -----
+        if (driver.findElements(By.cssSelector(".list")).size()==0){
+            addListButton.click();
+            Thread.sleep(1000);
+
+            //---Fill in list name ----
+            WebElement listNameField = driver.findElement(By.cssSelector(".list-name-input"));
+            listNameField.sendKeys("New");
+
+            //---- Press 'Add list' button -----
+            WebElement saveListButton = driver.findElement(By.cssSelector(".js-save-edit"));
+            saveListButton.click();
+            Thread.sleep(2000);
+
+            //----- Press x, cancel edit new list -----
+            WebElement cancelEditListButton = driver.findElement(By.cssSelector(".js-cancel-edit"));
+            cancelEditListButton.click();
+
+            Thread.sleep(2000);
+        }
+        WebElement addCard = driver.findElement(By.cssSelector(".js-add-a-card"));
+        addCard.click();
+        Thread.sleep(1000);
+        WebElement cardDetailsField = driver.findElement(By.cssSelector(".js-card-title"));
+        cardDetailsField.click();
+        cardDetailsField.sendKeys("New Card");
+        Thread.sleep(1000);
+        //------Press submit add card button ------
+        WebElement submitAddCardButton = driver.findElement(By.cssSelector(".js-add-card"));
+        submitAddCardButton.click();
+        Thread.sleep(1000);
+        // ----- Press X-button
+        WebElement cancelAddCard = driver.findElement(By.cssSelector(".js-cancel"));
+        cancelAddCard.click();
+        Thread.sleep(1000);
+    }
 }
