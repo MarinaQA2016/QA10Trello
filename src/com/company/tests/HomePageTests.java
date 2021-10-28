@@ -37,7 +37,6 @@ public class HomePageTests extends TestBase{
     }
 
 
-
     @Test
     public void checkPageHeader(){
         waitUntilElementIsVisible(By.xpath("//h1"),10);
@@ -46,19 +45,6 @@ public class HomePageTests extends TestBase{
                 "The text of the header is not correct");
     }
 
-    private void waitUntilElementIsVisible(By locator, int time) {
-        try {
-            new WebDriverWait(driver,time).until(ExpectedConditions.visibilityOfElementLocated(locator));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    private void waitUntilElementIsClickable(By locator, int time) {
-        try {
-            new WebDriverWait(driver,time).until(ExpectedConditions.elementToBeClickable(locator));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+
 
 }

@@ -12,34 +12,45 @@ public class CurrentBoardPageTests extends TestBase{
         // --- Define login button and click ------
         WebElement loginIcon = driver.findElement(By.xpath("//a[@href='/login']"));
         loginIcon.click();
-        Thread.sleep(5000);
+        waitUntilElementIsClickable(By.id("login"),10);
+
         //----- Enter email -----
         WebElement emailField = driver.findElement(By.id("user"));
         emailField.click();
         emailField.sendKeys("marinaqatest2019@gmail.com");
-        Thread.sleep(2000);
+        waitUntilElementIsClickable(By.xpath("//input[@value='Log in with Atlassian']"),10);
+
         // ------ Press 'Login with Atlassian' button
         WebElement loginAtlButton = driver.findElement(By.id("login"));
         loginAtlButton.click();
-        Thread.sleep(3000);
+        waitUntilElementIsClickable(By.id("password"),5);
+
         //------ Enter Password -----
         WebElement passwordField = driver.findElement(By.id("password"));
         passwordField.click();
         passwordField.sendKeys("marinaqa");
-        Thread.sleep(2000);
+        waitUntilElementIsClickable(By.id("login-submit"),5);
+
         //--- Submit 'Log In' button -----
         WebElement submitButton = driver.findElement(By.id("login-submit"));
         submitButton.click();
-        Thread.sleep(20000);
+        waitUntilElementIsClickable(By.xpath("//span[contains(text(),'Boards')]"),30);
+
         // ---- Print name of the 'Boards' button ----
         WebElement boardsButton = driver.findElement(By.xpath("//span[contains(text(),'Boards')]"));
-        System.out.println("Name of the 'Boards' button is " + boardsButton.getText());
+        waitUntilElementIsClickable(By
+                .xpath("//li[@class = 'boards-page-board-section-list-item'][.//div[@title='QA Haifa10']]"),10);
 
         // ---- Press on 'QA Haifa10' board -----
         WebElement qaHaifa10BoardButton = driver.findElement(By
                 .xpath("//li[@class = 'boards-page-board-section-list-item'][.//div[@title='QA Haifa10']]"));
         qaHaifa10BoardButton.click();
-        Thread.sleep(5000);
+        //---- wait that 'QA Haifa10' menu (header) is loaded ---
+        waitUntilElementIsClickable(By.xpath("//h1"),20);
+        //------wait that lists list is loaded -----
+        waitUntilAllElementsAreVisible(By.cssSelector(".list"),15);
+
+
     }
 
     @Test
