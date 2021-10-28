@@ -2,6 +2,7 @@ package com.company.tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -43,6 +44,8 @@ public class CurrentBoardPageTests extends TestBase{
 
     @Test
     public void createNewList() throws InterruptedException {
+        // ---- Receive lists quantity before the test
+        int listsBegin = driver.findElements(By.cssSelector(".list")).size();
         //--- Press on 'Add list' or 'Add another list' button
         WebElement addListButton = driver.findElement(By.cssSelector(".placeholder"));
         addListButton.click();
@@ -62,6 +65,11 @@ public class CurrentBoardPageTests extends TestBase{
         cancelEditListButton.click();
 
         Thread.sleep(2000);
+        // ---- Receive lists quantity finally, after running test
+        int listsEnd = driver.findElements(By.cssSelector(".list")).size();
+
+        Assert.assertEquals(listsBegin+1,listsEnd,
+                "The final quantity of the lists is not lists quantity at the beginning + 1");
 
     }
     @Test
@@ -89,6 +97,9 @@ public class CurrentBoardPageTests extends TestBase{
 
             Thread.sleep(2000);
         }
+        // ------ Receive cards quantity before the test running -------
+        int cardsBegin = driver.findElements(By.cssSelector(".list-card-details")).size();
+
         WebElement addCard = driver.findElement(By.cssSelector(".js-add-a-card"));
         addCard.click();
         Thread.sleep(1000);
@@ -103,6 +114,15 @@ public class CurrentBoardPageTests extends TestBase{
         // ----- Press X-button
         WebElement cancelAddCard = driver.findElement(By.cssSelector(".js-cancel"));
         cancelAddCard.click();
-        Thread.sleep(1000);
+        Thread.sleep(3000);
+        // ------ Receive cards quantity after the test running -------
+        int cardsEnd = driver.findElements(By.cssSelector(".list-card-details")).size();
+        // ------ refresh the page ---------------
+        driver.navigate().refresh();
+        Thread.sleep(3000);
+        cardsEnd = driver.findElements(By.cssSelector(".list-card-details")).size();
+
+        Assert.assertEquals(cardsBegin+1, cardsEnd,
+                "The final quantity of the cards is not cards quantity at the beginning + 1 ");
     }
 }

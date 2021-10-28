@@ -58,7 +58,9 @@ public class LoginPageTests extends TestBase{
         Thread.sleep(3000);
         // ----Print error message ----------
         WebElement errorMessage = driver.findElement(By.cssSelector("#error>p"));
-        System.out.println("Error message text: " + errorMessage.getText());
+       // System.out.println("Error message text: " + errorMessage.getText());
+        Assert.assertEquals("There isn't an account for this username", errorMessage.getText(),
+                "The error-message is not 'There isn't an account for this username'");
     }
 
     @Test
@@ -83,7 +85,9 @@ public class LoginPageTests extends TestBase{
         Thread.sleep(3000);
         // --- Print error message -------
         WebElement errorMessage = driver.findElement(By.id("login-error"));
-        System.out.println("Error message: " + errorMessage.getText());
+        //System.out.println("Error message: " + errorMessage.getText());
+        Assert.assertTrue(errorMessage.getText().contains("Incorrect email address and"),
+                "The error message doesn't contain 'Incorrect email address and'");
 
     }
     @Test
