@@ -41,7 +41,7 @@ public class LoginPageTests extends TestBase{
                 "The final error-message is not 'Missing email'");
     }
     @Test
-    public void loginNegativeLoginNotEmail() throws InterruptedException {
+    public void loginNegativeLoginNotEmail()  {
 
         // --- Fill in email field ------
         WebElement emailField = driver.findElement(By.id("user"));
@@ -64,7 +64,7 @@ public class LoginPageTests extends TestBase{
     }
 
     @Test
-    public void loginNegativePasswordIncorrect() throws InterruptedException {
+    public void loginNegativePasswordIncorrect()  {
         //----- Enter email -----
         WebElement emailField = driver.findElement(By.id("user"));
         emailField.click();
@@ -93,7 +93,7 @@ public class LoginPageTests extends TestBase{
 
     }
     @Test
-    public void loginPositive() throws InterruptedException {
+    public void loginPositive()  {
         //----- Enter email -----
         WebElement emailField = driver.findElement(By.id("user"));
         emailField.click();

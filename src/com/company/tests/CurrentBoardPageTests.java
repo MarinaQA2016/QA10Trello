@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 public class CurrentBoardPageTests extends TestBase{
     @BeforeMethod
-    public void initTests() throws InterruptedException {
+    public void initTests()  {
         // --- Define login button and click ------
         WebElement loginIcon = driver.findElement(By.xpath("//a[@href='/login']"));
         loginIcon.click();
@@ -49,33 +49,37 @@ public class CurrentBoardPageTests extends TestBase{
         waitUntilElementIsClickable(By.xpath("//h1"),20);
         //------wait that lists list is loaded -----
         waitUntilAllElementsAreVisible(By.cssSelector(".list"),15);
-
-
     }
 
     @Test
-    public void createNewList() throws InterruptedException {
+    public void createNewList()  {
         // ---- Receive lists quantity before the test
         int listsBegin = driver.findElements(By.cssSelector(".list")).size();
         //--- Press on 'Add list' or 'Add another list' button
         WebElement addListButton = driver.findElement(By.cssSelector(".placeholder"));
         addListButton.click();
-        Thread.sleep(1000);
+        waitUntilElementIsClickable(By.cssSelector(".list-name-input"),5);
 
         //---Fill in list name ----
         WebElement listNameField = driver.findElement(By.cssSelector(".list-name-input"));
         listNameField.sendKeys("New");
+        waitUntilElementIsClickable(By.cssSelector(".js-save-edit"),5);
 
         //---- Press 'Add list' button -----
         WebElement saveListButton = driver.findElement(By.cssSelector(".js-save-edit"));
         saveListButton.click();
-        Thread.sleep(2000);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        waitUntilElementIsClickable(By.cssSelector(".js-cancel-edit"),5);
 
         //----- Press x, cancel edit new list -----
         WebElement cancelEditListButton = driver.findElement(By.cssSelector(".js-cancel-edit"));
         cancelEditListButton.click();
 
-        Thread.sleep(2000);
+        waitUntilElementIsClickable(By.cssSelector(".placeholder"),10);
         // ---- Receive lists quantity finally, after running test
         int listsEnd = driver.findElements(By.cssSelector(".list")).size();
 
@@ -84,14 +88,14 @@ public class CurrentBoardPageTests extends TestBase{
 
     }
     @Test
-    public void addNewCard() throws InterruptedException {
+    public void addNewCard()  {
         WebElement addListButton = driver.findElement(By.cssSelector(".placeholder"));
         //-----Verification of lists quantity by name of addListButton -------
         //if (addListButton.getText().equals("Add a list")) {
         //------Verification by list elements quantity -----
         if (driver.findElements(By.cssSelector(".list")).size()==0){
             addListButton.click();
-            Thread.sleep(1000);
+            waitUntilElementIsClickable(By.cssSelector(".list-name-input"),5);
 
             //---Fill in list name ----
             WebElement listNameField = driver.findElement(By.cssSelector(".list-name-input"));
@@ -100,37 +104,45 @@ public class CurrentBoardPageTests extends TestBase{
             //---- Press 'Add list' button -----
             WebElement saveListButton = driver.findElement(By.cssSelector(".js-save-edit"));
             saveListButton.click();
-            Thread.sleep(2000);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            waitUntilElementIsClickable(By.cssSelector(".js-cancel-edit"),5);
 
             //----- Press x, cancel edit new list -----
             WebElement cancelEditListButton = driver.findElement(By.cssSelector(".js-cancel-edit"));
             cancelEditListButton.click();
 
-            Thread.sleep(2000);
+            waitUntilElementIsClickable(By.cssSelector(".placeholder"),10);
         }
         // ------ Receive cards quantity before the test running -------
         int cardsBegin = driver.findElements(By.cssSelector(".list-card-details")).size();
 
         WebElement addCard = driver.findElement(By.cssSelector(".js-add-a-card"));
         addCard.click();
-        Thread.sleep(1000);
+        waitUntilElementIsClickable(By.cssSelector(".js-card-title"),5);
         WebElement cardDetailsField = driver.findElement(By.cssSelector(".js-card-title"));
         cardDetailsField.click();
         cardDetailsField.sendKeys("New Card");
-        Thread.sleep(1000);
+        waitUntilElementIsClickable(By.cssSelector(".js-add-card"),5);
         //------Press submit add card button ------
         WebElement submitAddCardButton = driver.findElement(By.cssSelector(".js-add-card"));
         submitAddCardButton.click();
-        Thread.sleep(1000);
+        waitUntilElementIsClickable(By.cssSelector(".js-cancel"),5);
+
         // ----- Press X-button
         WebElement cancelAddCard = driver.findElement(By.cssSelector(".js-cancel"));
         cancelAddCard.click();
-        Thread.sleep(3000);
+        waitUntilElementIsClickable(By.cssSelector(".js-add-a-card"),5);
+
         // ------ Receive cards quantity after the test running -------
         int cardsEnd = driver.findElements(By.cssSelector(".list-card-details")).size();
+
         // ------ refresh the page ---------------
         driver.navigate().refresh();
-        Thread.sleep(3000);
+        waitUntilAllElementsAreVisible(By.cssSelector(".list-card-details"),10);
         cardsEnd = driver.findElements(By.cssSelector(".list-card-details")).size();
 
         Assert.assertEquals(cardsBegin+1, cardsEnd,
