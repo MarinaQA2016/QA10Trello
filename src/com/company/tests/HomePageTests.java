@@ -1,6 +1,7 @@
 package com.company.tests;
 
 
+import com.company.pages.HomePageHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,35 +14,35 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class HomePageTests extends TestBase{
+    HomePageHelper homePage;
+
+    @BeforeMethod
+    public void initTests(){
+        homePage = new HomePageHelper(driver);
+        homePage.waitUntilPageIsLoaded();
+    }
 
     @Test
     public void trelloApplStart(){
-        Assert.assertEquals("Manage Your Team’s Projects From Anywhere | Trello",driver.getTitle(),
+        Assert.assertEquals("Manage Your Team’s Projects From Anywhere | Trello",homePage.getApplTitle(),
                 "The title of the application is not corresponds to expected title");
     }
 
     @Test
     public void checkLogInButton(){
-        waitUntilElementIsClickable(By.xpath("//span[contains(text(),'Log in')]"),10);
-        WebElement loginButton = driver.findElement(By.xpath("//span[contains(text(),'Log in')]"));
-        Assert.assertEquals("Log in",loginButton.getText(),
+        Assert.assertEquals("Log in",homePage.getLoginIconName(),
                 "The name of the button is not 'Log in'");
     }
 
     @Test
     public void checkSignUpButton(){
-        waitUntilElementIsClickable(By.xpath("//a[@href='/signup']"),10);
-        WebElement signUpButton = driver.findElement(By.xpath("//a[@href='/signup']"));
-        Assert.assertEquals("Sign up", signUpButton.getText(),
+        Assert.assertEquals("Sign up", homePage.getSignUpIconName(),
                 "Name of the button is not 'Sign Up'");
     }
 
-
     @Test
     public void checkPageHeader(){
-        waitUntilElementIsVisible(By.xpath("//h1"),10);
-        WebElement header = driver.findElement(By.xpath("//h1"));
-        Assert.assertEquals("Trello helps teams move work forward.",header.getText(),
+        Assert.assertEquals("Trello helps teams move work forward.",homePage.getHeader(),
                 "The text of the header is not correct");
     }
 
