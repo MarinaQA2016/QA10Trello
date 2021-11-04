@@ -14,35 +14,14 @@ public class TestBase {
     WebDriver driver;
 
     @BeforeMethod
-    public void startUp() throws InterruptedException {
+    public void startUp()  {
         driver = new ChromeDriver();
         driver.get("https://trello.com/");
-        //Thread.sleep(5000);
     }
     @AfterMethod
     public void tearDown(){
         driver.quit();
     }
 
-    public void waitUntilElementIsVisible(By locator, int time) {
-        try {
-            new WebDriverWait(driver,time).until(ExpectedConditions.visibilityOfElementLocated(locator));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    public void waitUntilElementIsClickable(By locator, int time) {
-        try {
-            new WebDriverWait(driver,time).until(ExpectedConditions.elementToBeClickable(locator));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    public void waitUntilAllElementsAreVisible(By locator, int time) {
-        try {
-            new WebDriverWait(driver,time).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+
 }

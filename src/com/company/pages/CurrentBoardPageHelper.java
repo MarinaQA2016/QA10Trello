@@ -3,6 +3,7 @@ package com.company.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 
 public class CurrentBoardPageHelper extends  PageBase{
     String boardTitle;
@@ -10,6 +11,7 @@ public class CurrentBoardPageHelper extends  PageBase{
     public CurrentBoardPageHelper(WebDriver driver, String boardTitle){
         this.driver=driver;
         this.boardTitle = boardTitle;
+        PageFactory.initElements(driver,this);
     }
 
     public void waitUntilPageIsLoaded() {

@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -21,8 +22,8 @@ public class LoginPageTests extends TestBase{
 
     @BeforeMethod
     public void initTests()  {
-        homePage = new HomePageHelper(driver);
-        loginPage = new LoginPageHelper(driver);
+        homePage = PageFactory.initElements(driver, HomePageHelper.class);
+        loginPage = PageFactory.initElements(driver,LoginPageHelper.class);
         boardsPage = new BoardsPageHelper(driver);
         homePage.waitUntilPageIsLoaded();
         homePage.openLoginPage();
