@@ -13,8 +13,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class LoginPageTests extends TestBase{
-    private static final String EMAIL = "marinaqatest2019@gmail.com";
-    private static final String PASSWORD = "marinaqa";
+
 
     HomePageHelper homePage;
     LoginPageHelper loginPage;

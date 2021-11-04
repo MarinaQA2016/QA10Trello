@@ -12,6 +12,10 @@ public class PageBase {
         return driver.getTitle();
     }
 
+    public void refreshPage(){
+        driver.navigate().refresh();
+    }
+
     public void waitUntilElementIsVisible(By locator, int time) {
         try {
             new WebDriverWait(driver,time).until(ExpectedConditions.visibilityOfElementLocated(locator));
