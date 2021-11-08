@@ -21,7 +21,7 @@ public class CurrentBoardPageTests extends TestBase{
     public void initTests()  {
         homePage = PageFactory.initElements(driver, HomePageHelper.class);
         loginPage = PageFactory.initElements(driver,LoginPageHelper.class);
-        boardsPage = new BoardsPageHelper(driver);
+        boardsPage = PageFactory.initElements(driver,BoardsPageHelper.class);
         qa10HaifaCurrentBoard = new CurrentBoardPageHelper(driver,"QA Haifa10");
 
         homePage.waitUntilPageIsLoaded();

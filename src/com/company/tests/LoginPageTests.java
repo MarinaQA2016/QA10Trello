@@ -24,7 +24,7 @@ public class LoginPageTests extends TestBase{
     public void initTests()  {
         homePage = PageFactory.initElements(driver, HomePageHelper.class);
         loginPage = PageFactory.initElements(driver,LoginPageHelper.class);
-        boardsPage = new BoardsPageHelper(driver);
+        boardsPage = PageFactory.initElements(driver, BoardsPageHelper.class);
         homePage.waitUntilPageIsLoaded();
         homePage.openLoginPage();
         loginPage.waitUntilPageIsLoaded();

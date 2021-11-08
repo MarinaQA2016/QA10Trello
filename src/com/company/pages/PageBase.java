@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class PageBase {
     WebDriver driver;
 
@@ -49,9 +51,26 @@ public class PageBase {
         }
     }
 
+    public void waitUntiAllElementAreClickable(List<WebElement> elementsList, int time) {
+        try {
+            for (WebElement element : elementsList){
+            new WebDriverWait(driver,time).until(ExpectedConditions.elementToBeClickable(element));}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void waitUntilAllElementsAreVisible(By locator, int time) {
         try {
             new WebDriverWait(driver,time).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void waitUntilAllElementsAreVisible(List<WebElement> elementsList, int time) {
+        try {
+            new WebDriverWait(driver,time).until(ExpectedConditions.visibilityOfAllElements(elementsList));
         } catch (Exception e) {
             e.printStackTrace();
         }
