@@ -31,6 +31,8 @@ public class CurrentBoardPageHelper extends  PageBase{
     WebElement submitAddCardButton;
     @FindBy (css = ".js-cancel")
     WebElement cancelAddCard;
+    @FindBy (css = ".js-open-header-member-menu")
+    WebElement acoountPanelMenuButton;
 
 
     String boardTitle;
@@ -114,5 +116,10 @@ public class CurrentBoardPageHelper extends  PageBase{
         this.fillInNewCardTitle(title);
         this.submitCreatingCard();
         this.cancelCreatingNewCard();
+    }
+
+    public void openAccountPanelPage() {
+        waitUntilElementIsClickable(acoountPanelMenuButton,10);
+        acoountPanelMenuButton.click();
     }
 }

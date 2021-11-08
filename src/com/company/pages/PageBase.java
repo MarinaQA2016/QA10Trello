@@ -60,6 +60,14 @@ public class PageBase {
         }
     }
 
+    public void waitUntiAllElementArePresent(By locator, int time) {
+        try {
+                new WebDriverWait(driver,time).until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void waitUntilAllElementsAreVisible(By locator, int time) {
         try {
             new WebDriverWait(driver,time).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
