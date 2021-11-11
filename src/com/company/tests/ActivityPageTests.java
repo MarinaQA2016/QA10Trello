@@ -23,25 +23,22 @@ public class ActivityPageTests extends TestBase {
         accountPanelMenu = PageFactory.initElements(driver, AccountPanelMenuHelper.class);
         activityMenuPage = PageFactory.initElements(driver,ActivityMenuPageHelper.class);
 
-        homePage.waitUntilPageIsLoaded();
-        homePage.openLoginPage();
-        loginPage.waitUntilPageIsLoaded();
-        loginPage.loginAttl(EMAIL,PASSWORD);
-        boardsPage.waitUntilPageIsLoaded();
-        boardsPage.openCurrentBoard("QA Haifa10");
+        homePage.waitUntilPageIsLoaded()
+                .openLoginPage();
+        loginPage.waitUntilPageIsLoaded()
+                .loginAttl(EMAIL,PASSWORD);
+        boardsPage.waitUntilPageIsLoaded()
+                .openCurrentBoard("QA Haifa10");
         qa10HaifaCurrentBoard.waitUntilPageIsLoaded();
-        //qa10HaifaCurrentBoard.openAccountPanelPage();
-       // accountPanelMenu.waitUntilPageIsOpen();
-        //accountPanelMenu.openActivityMenuPage();
-        //activityMenuPage.waitUntilPageIsOpened();
+
     }
     @Test
     public void newListCreatingInActivityTest(){
         String nameNewList = "QA10New";
-        qa10HaifaCurrentBoard.createNewList(nameNewList);
-        qa10HaifaCurrentBoard.openAccountPanelPage();
-        accountPanelMenu.waitUntilPageIsOpen();
-        accountPanelMenu.openActivityMenuPage();
+        qa10HaifaCurrentBoard.createNewList(nameNewList)
+                .openAccountPanelPage();
+        accountPanelMenu.waitUntilPageIsOpen()
+                .openActivityMenuPage();
         activityMenuPage.waitUntilPageIsOpened();
         Assert.assertTrue(activityMenuPage.getFirstRecordDescription().contains(nameNewList));
     }

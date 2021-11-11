@@ -43,43 +43,49 @@ public class CurrentBoardPageHelper extends  PageBase{
         PageFactory.initElements(driver,this);
     }
 
-    public void waitUntilPageIsLoaded() {
+    public CurrentBoardPageHelper waitUntilPageIsLoaded() {
         waitUntilElementIsClickable(boardHeader,20);
         waitUntilAllElementsAreVisible(toDoList,20);
         waitUntilAllElementsAreVisible(cardsList, 20);
+        return this;
     }
 
     public int getNumberOfLists() {
         return toDoList.size();
     }
 
-    public void createNewList(String title) {
+    public CurrentBoardPageHelper createNewList(String title) {
         this.pressAddListButton();
         this.fillInListTitle(title);
         this.saveNewList();
         this.cancelCreateNewList();
+        return this;
     }
 
-    public void pressAddListButton() {
+    public CurrentBoardPageHelper pressAddListButton() {
         waitUntilElementIsClickable(addListButton,10);
         addListButton.click();
+        return this;
     }
 
-    public void fillInListTitle(String title) {
+    public CurrentBoardPageHelper fillInListTitle(String title) {
         waitUntilElementIsClickable(listNameField,5);
         listNameField.sendKeys(title);
+        return this;
     }
 
-    public void saveNewList() {
+    public CurrentBoardPageHelper saveNewList() {
         waitUntilElementIsClickable(saveListButton,10);
         saveListButton.click();
         sleep(2000);
+        return this;
     }
 
-    public void cancelCreateNewList() {
+    public CurrentBoardPageHelper cancelCreateNewList() {
         waitUntilElementIsClickable(cancelEditListButton,5);
         cancelEditListButton.click();
         waitUntilElementIsClickable(By.cssSelector(".placeholder"),10);
+        return this;
     }
 
     public int getNumberOfCards() {
@@ -90,32 +96,37 @@ public class CurrentBoardPageHelper extends  PageBase{
         addCard.click();
     }
 
-    public void fillInNewCardTitle(String title) {
+    public CurrentBoardPageHelper fillInNewCardTitle(String title) {
         waitUntilElementIsClickable(cardDetailsField, 5);
         cardDetailsField.click();
         cardDetailsField.sendKeys(title);
+        return this;
     }
 
-    public void submitCreatingCard() {
+    public CurrentBoardPageHelper submitCreatingCard() {
         waitUntilElementIsClickable(submitAddCardButton,10);
         submitAddCardButton.click();
+        return this;
     }
 
-    public void cancelCreatingNewCard() {
+    public CurrentBoardPageHelper cancelCreatingNewCard() {
         waitUntilElementIsClickable(cancelAddCard,10);
         cancelAddCard.click();
         waitUntilElementIsClickable(By.cssSelector(".js-add-a-card"),5);
+        return  this;
     }
 
-    public void addNewCard(String title) {
+    public CurrentBoardPageHelper addNewCard(String title) {
         this.pressAddCardButton();
         this.fillInNewCardTitle(title);
         this.submitCreatingCard();
         this.cancelCreatingNewCard();
+        return this;
     }
 
-    public void openAccountPanelPage() {
+    public CurrentBoardPageHelper openAccountPanelPage() {
         waitUntilElementIsClickable(acoountPanelMenuButton,10);
         acoountPanelMenuButton.click();
+        return this;
     }
 }

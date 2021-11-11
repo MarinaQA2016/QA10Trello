@@ -15,9 +15,10 @@ public class ActivityMenuPageHelper extends PageBase{
         this.driver = driver;
     }
 
-    public void waitUntilPageIsOpened(){
+    public ActivityMenuPageHelper waitUntilPageIsOpened(){
         waitUntiAllElementArePresent(By.cssSelector(".phenom-desc"), 20);
         sleep(3000);
+        return this;
     }
 
     public String getFirstRecordDescription() {

@@ -24,12 +24,12 @@ public class CurrentBoardPageTests extends TestBase{
         boardsPage = PageFactory.initElements(driver,BoardsPageHelper.class);
         qa10HaifaCurrentBoard = new CurrentBoardPageHelper(driver,"QA Haifa10");
 
-        homePage.waitUntilPageIsLoaded();
-        homePage.openLoginPage();
-        loginPage.waitUntilPageIsLoaded();
-        loginPage.loginAttl(EMAIL,PASSWORD);
-        boardsPage.waitUntilPageIsLoaded();
-        boardsPage.openCurrentBoard("QA Haifa10");
+        homePage.waitUntilPageIsLoaded()
+                .openLoginPage();
+        loginPage.waitUntilPageIsLoaded()
+                .loginAttl(EMAIL,PASSWORD);
+        boardsPage.waitUntilPageIsLoaded()
+                .openCurrentBoard("QA Haifa10");
         qa10HaifaCurrentBoard.waitUntilPageIsLoaded();
     }
 

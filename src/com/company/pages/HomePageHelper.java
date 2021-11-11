@@ -18,9 +18,10 @@ public class HomePageHelper extends PageBase{
         this.driver=driver;
     }
 
-    public void waitUntilPageIsLoaded() {
+    public HomePageHelper waitUntilPageIsLoaded() {
         waitUntilElementIsClickable(loginIcon,10);
         waitUntilElementIsClickable(signUpButton,10);
+        return this;
     }
 
     public String getLoginIconName() {
@@ -37,7 +38,8 @@ public class HomePageHelper extends PageBase{
     }
 
 
-    public void openLoginPage() {
+    public HomePageHelper openLoginPage() {
         loginIcon.click();
+        return this;
     }
 }

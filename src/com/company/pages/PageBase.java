@@ -25,6 +25,11 @@ public class PageBase {
             e.printStackTrace();
         }
     }
+    public void fillInTextField(WebElement field, String value) {
+        field.clear();
+        field.click();
+        field.sendKeys(value);
+    }
 
     public void waitUntilElementIsVisible(By locator, int time) {
         try {

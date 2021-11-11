@@ -14,16 +14,18 @@ public class AccountPanelMenuHelper extends PageBase{
         this.driver = driver;
     }
 
-    public void waitUntilPageIsOpen() {
+    public AccountPanelMenuHelper waitUntilPageIsOpen() {
         waitUntilElementIsClickable(activityMenu,20);
         waitUntilElementIsVisible(emailOnAccountPanel,10);
+        return this;
     }
 
     public String getAccountEMail() {
         return emailOnAccountPanel.getText();
     }
 
-    public void openActivityMenuPage() {
+    public AccountPanelMenuHelper openActivityMenuPage() {
         activityMenu.click();
+        return this;
     }
 }

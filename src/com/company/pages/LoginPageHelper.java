@@ -1,5 +1,6 @@
 package com.company.pages;
 
+import com.company.tests.LoginPageTests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,25 +30,29 @@ public class LoginPageHelper extends PageBase {
         this.driver = driver;
     }
 
-    public void waitUntilPageIsLoaded() {
+    public LoginPageHelper waitUntilPageIsLoaded() {
         waitUntilElementIsClickable(loginButton,10);
         waitUntilElementIsClickable(passwordNotAttlField,10);
+        return this;
     }
 
-    public void fillEmailField(String email) {
-        emailField.click();
-        emailField.sendKeys(email);
+    public LoginPageHelper fillEmailField(String email) {
+        fillInTextField(emailField,email);
+        return this;
     }
 
-    public void fillPasswordFieldNotAttl(String password) {
+
+
+    public LoginPageHelper fillPasswordFieldNotAttl(String password) {
         waitUntilElementIsClickable(passwordNotAttlField,5);
-        passwordNotAttlField.click();
-        passwordNotAttlField.sendKeys(password);
+        fillInTextField(passwordNotAttlField,password);
+        return this;
     }
 
-    public void clickLoginButtonNotAttl() {
+    public LoginPageHelper clickLoginButtonNotAttl() {
         waitUntilElementIsClickable(loginButton,10);
         loginButton.click();
+        return this;
     }
 
     public String getErrorMessageNotAttl() {
@@ -55,27 +60,30 @@ public class LoginPageHelper extends PageBase {
         return errorMessage.getText();
     }
 
-    public void loginNotAttl(String email, String password) {
+    public LoginPageHelper loginNotAttl(String email, String password) {
         this.fillEmailField(email);
         this.fillPasswordFieldNotAttl(password);
         this.clickLoginButtonNotAttl();
+        return  this;
 
     }
 
-    public void clickLoginAsAttl() {
+    public LoginPageHelper clickLoginAsAttl() {
         waitUntilElementIsClickable(loginAtlButton,10);
         loginAtlButton.click();
+        return this;
     }
 
-    public void fillPasswordAttl(String password) {
+    public LoginPageHelper fillPasswordAttl(String password) {
         waitUntilElementIsClickable(passwordField,5);
-        passwordField.click();
-        passwordField.sendKeys(password);
+        fillInTextField(passwordField,password);
+        return this;
     }
 
-    public void submitLoginAttl() {
+    public LoginPageHelper submitLoginAttl() {
         waitUntilElementIsClickable(submitAtlButton,5);
         submitAtlButton.click();
+        return this;
     }
 
     public String getErrorMessageAttl() {
@@ -83,10 +91,11 @@ public class LoginPageHelper extends PageBase {
         return errorMessageAttl.getText();
     }
 
-    public void loginAttl(String email, String password) {
+    public LoginPageHelper loginAttl(String email, String password) {
         this.fillEmailField(email);
         this.clickLoginAsAttl();
         this.fillPasswordAttl(password);
         this.submitLoginAttl();
+        return  this;
     }
 }

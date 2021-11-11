@@ -17,10 +17,11 @@ public class BoardsPageHelper extends PageBase{
         this.driver = driver;
     }
 
-    public void waitUntilPageIsLoaded() {
+    public BoardsPageHelper waitUntilPageIsLoaded() {
         waitUntilElementIsClickable(boardsButton, 30);
         //waitUntilAllElementsAreVisible(boardsList,15);
         waitUntiAllElementAreClickable(boardsList,15);
+        return this;
     }
 
     public String getBordsButtonName() {
@@ -28,12 +29,13 @@ public class BoardsPageHelper extends PageBase{
         return boardsButton.getText();
     }
 
-    public void openCurrentBoard(String bordsTitle) {
+    public BoardsPageHelper openCurrentBoard(String bordsTitle) {
         String qaHaifa10BoardButtonLocator =
                 "//li[@class = 'boards-page-board-section-list-item'][.//div[@title='" +bordsTitle+"']]";
         waitUntilElementIsClickable(By.xpath(qaHaifa10BoardButtonLocator),10);
         // ---- Press on 'QA Haifa10' board -----
         WebElement qaHaifa10BoardButton = driver.findElement(By.xpath(qaHaifa10BoardButtonLocator));
         qaHaifa10BoardButton.click();
+        return this;
     }
 }
