@@ -17,11 +17,7 @@ public class ActivityMenuPageHelper extends PageBase{
 
     public void waitUntilPageIsOpened(){
         waitUntiAllElementArePresent(By.cssSelector(".phenom-desc"), 20);
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        sleep(3000);
     }
 
     public String getFirstRecordDescription() {

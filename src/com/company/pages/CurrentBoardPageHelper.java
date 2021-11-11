@@ -73,11 +73,7 @@ public class CurrentBoardPageHelper extends  PageBase{
     public void saveNewList() {
         waitUntilElementIsClickable(saveListButton,10);
         saveListButton.click();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        sleep(2000);
     }
 
     public void cancelCreateNewList() {

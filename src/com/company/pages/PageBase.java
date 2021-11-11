@@ -18,6 +18,13 @@ public class PageBase {
     public void refreshPage(){
         driver.navigate().refresh();
     }
+    public void sleep(int timeMS){
+        try {
+            Thread.sleep(timeMS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void waitUntilElementIsVisible(By locator, int time) {
         try {
@@ -71,6 +78,14 @@ public class PageBase {
     public void waitUntilAllElementsAreVisible(By locator, int time) {
         try {
             new WebDriverWait(driver,time).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void waitUntilTextToBePresentInElement(WebElement element, String text, int time) {
+        try {
+            new WebDriverWait(driver,time).until(ExpectedConditions.textToBePresentInElement(element,text));
         } catch (Exception e) {
             e.printStackTrace();
         }
