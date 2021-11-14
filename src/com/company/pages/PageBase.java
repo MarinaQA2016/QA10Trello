@@ -103,4 +103,19 @@ public class PageBase {
             e.printStackTrace();
         }
     }
+
+    public void waitUntilElementIsInVisible(WebElement element, int time) {
+        try {
+            new WebDriverWait(driver,time).until(ExpectedConditions.invisibilityOf(element));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void waitUntilAllElementsAreInVisible(List<WebElement> list, int time) {
+        try {
+            new WebDriverWait(driver,time).until(ExpectedConditions.invisibilityOfAllElements(list));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

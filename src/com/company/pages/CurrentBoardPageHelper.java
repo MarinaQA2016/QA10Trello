@@ -1,5 +1,6 @@
 package com.company.pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,6 +34,10 @@ public class CurrentBoardPageHelper extends  PageBase{
     WebElement cancelAddCard;
     @FindBy (css = ".js-open-header-member-menu")
     WebElement acoountPanelMenuButton;
+    @FindBy (css = ".js-open-list-menu")
+    List<WebElement>  listMenuIconsList;
+    @FindBy (css = ".js-close-list")
+    WebElement archiveListMenu;
 
 
     String boardTitle;
@@ -128,5 +133,21 @@ public class CurrentBoardPageHelper extends  PageBase{
         waitUntilElementIsClickable(acoountPanelMenuButton,10);
         acoountPanelMenuButton.click();
         return this;
+    }
+
+    public void deleteLastList() {
+        waitUntiAllElementAreClickable(listMenuIconsList,15);
+        int size = listMenuIconsList.size();
+        deleteListByNumber(size);
+    }
+
+    public void deleteListByNumber(int num) {
+        listMenuIconsList.get(num-1).click();
+        waitUntilElementIsClickable(archiveListMenu,20);
+        archiveListMenu.click();
+        waitUntilAllElementsAreInVisible(driver.findElements(By.cssSelector(".js-close-list")),20);
+
+
+
     }
 }

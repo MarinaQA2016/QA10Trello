@@ -68,4 +68,18 @@ public class CurrentBoardPageTests extends TestBase{
         Assert.assertEquals(cardsBegin+1, cardsEnd,
                 "The final quantity of the cards is not cards quantity at the beginning + 1 ");
     }
+
+    @Test
+    public void deleteLastList(){
+        if (qa10HaifaCurrentBoard.getNumberOfLists()==0){
+            qa10HaifaCurrentBoard.createNewList("firstList");
+        }
+        int quantityListsBefore = qa10HaifaCurrentBoard.getNumberOfLists();
+        System.out.println("Before " + quantityListsBefore);
+        qa10HaifaCurrentBoard.deleteLastList();
+        int quantityListsAfter = qa10HaifaCurrentBoard.getNumberOfLists();
+        System.out.println("After " + quantityListsAfter);
+        Assert.assertEquals(quantityListsBefore-1,quantityListsAfter,
+                "The final quantity of lists is not quantity of list before-1");
+    }
 }
